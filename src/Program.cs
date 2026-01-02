@@ -95,6 +95,8 @@ namespace AgentForum
                 AgentB.AddInput(new Message(Role.user, response));
                 response = await AgentB.PromptAsync();
                 Console.WriteLine();
+                AnsiConsole.MarkupLine("[gray][italic]Cumulative Input Token Tally: " + (AgentA.InputTokensConsumed + AgentB.InputTokensConsumed).ToString("#,##0") + "[/][/]");
+                AnsiConsole.MarkupLine("[gray][italic]Cumulative Output Token Tally: " + (AgentA.OutputTokensConsumed + AgentB.OutputTokensConsumed).ToString("#,##0") + "[/][/]");
                 Console.WriteLine();
                 AnsiConsole.MarkupLine("[bold][underline]AGENT B Says...[/][/]");
                 Console.WriteLine(response);
@@ -110,6 +112,8 @@ namespace AgentForum
                 AgentA.AddInput(new Message(Role.user, response));
                 response = await AgentA.PromptAsync();
                 Console.WriteLine();
+                AnsiConsole.MarkupLine("[gray][italic]Cumulative Input Token Tally: " + (AgentA.InputTokensConsumed + AgentB.InputTokensConsumed).ToString("#,##0") + "[/][/]");
+                AnsiConsole.MarkupLine("[gray][italic]Cumulative Output Token Tally: " + (AgentA.OutputTokensConsumed + AgentB.OutputTokensConsumed).ToString("#,##0") + "[/][/]");
                 Console.WriteLine();
                 AnsiConsole.MarkupLine("[bold][underline]AGENT A Says...[/][/]");
                 Console.WriteLine(response);

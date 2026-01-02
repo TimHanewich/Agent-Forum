@@ -5,10 +5,15 @@ namespace AgentForum
 {
     public class Agent
     {
+        //Private variables
         private Deployment Deployment;
         private string Model;
         private string? PreviousResponseID;
         private List<Message> Inputs;
+
+        //Public variables
+        public int InputTokensConsumed {get; set;}
+        public int OutputTokensConsumed {get; set;}
 
         public Agent(Deployment d, string model)
         {
@@ -16,6 +21,9 @@ namespace AgentForum
             Model = model;
             PreviousResponseID = null;
             Inputs = new List<Message>();
+
+            InputTokensConsumed = 0;
+            OutputTokensConsumed = 0;
         }
 
         public void AddInput(Message msg)
@@ -41,6 +49,10 @@ namespace AgentForum
 
             //Clear out inputs for next time
             Inputs.Clear();
+
+            //Increment tokens
+            InputTokensConsumed = InputTokensConsumed + r.InputTokensConsumed;
+            OutputTokensConsumed = OutputTokensConsumed + r.OutputTokensConsumed;
 
             //Extract response
             foreach (Exchange ex in r.Outputs)
