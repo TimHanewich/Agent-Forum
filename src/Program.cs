@@ -79,12 +79,19 @@ namespace AgentForum
             AnsiConsole.MarkupLine("[underline]First Dialog[/]");
             Console.WriteLine("Agent A speaks first. What do they say?");
             string response = AnsiConsole.Ask<string>("> "); //queue it up as the last response
+            AgentA.AddInput(new Message(Role.assistant, response)); //add ITS OWN response to the future messages we will send to it so it KNOWS it sent that first.
             Console.WriteLine();
 
+            //Infinite loop!
+            string NewInstructions = ""; //declare empty placeholder
             while (true)
             {
                 //Prompt Agent B
                 AnsiConsole.Markup("[gray][italic]Agent B responding...[/][/]");
+                if (NewInstructions != "")
+                {
+                    AgentB.AddInput(new Message(Role.developer, NewInstructions));
+                }
                 AgentB.AddInput(new Message(Role.user, response));
                 response = await AgentB.PromptAsync();
                 Console.WriteLine();
@@ -92,11 +99,14 @@ namespace AgentForum
                 AnsiConsole.MarkupLine("[bold][underline]AGENT B[/][/]");
                 Console.WriteLine(response);
                 Console.WriteLine();
-                AnsiConsole.Markup("[gray][italic]Enter to continue...[/][/]");
-                Console.ReadLine();
+                NewInstructions = AnsiConsole.Prompt(new TextPrompt<string>("[gray][italic]Enter to continue, or provide instructions to agent A on what to do next > [/][/]").AllowEmpty());
 
                 //Prompt Agent A
                 AnsiConsole.Markup("[gray][italic]Agent A responding...[/][/]");
+                if (NewInstructions != "")
+                {
+                    AgentA.AddInput(new Message(Role.developer, NewInstructions));
+                }
                 AgentA.AddInput(new Message(Role.user, response));
                 response = await AgentA.PromptAsync();
                 Console.WriteLine();
@@ -104,8 +114,7 @@ namespace AgentForum
                 AnsiConsole.MarkupLine("[bold][underline]AGENT A[/][/]");
                 Console.WriteLine(response);
                 Console.WriteLine();
-                AnsiConsole.Markup("[gray][italic]Enter to continue...[/][/]");
-                Console.ReadLine();
+                NewInstructions = AnsiConsole.Prompt(new TextPrompt<string>("[gray][italic]Enter to continue, or provide instructions to agent B on what to do next > [/][/]").AllowEmpty());
             }
             
 
