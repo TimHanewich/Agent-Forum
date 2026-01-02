@@ -59,18 +59,54 @@ namespace AgentForum
             d.Endpoint = Endpoint;
             d.ApiKey = ApiKey;
 
-            List<string> SystemPrompts = new List<string>();
-
-            //Info about agent 1
-            AnsiConsole.MarkupLine("[underline]Agent 1 System Prompt[/]");
-            SystemPrompts.Add(AnsiConsole.Ask<string>("> "));
+            //Info about agent A
+            AnsiConsole.MarkupLine("[underline]Agent A System Prompt[/]");
+            string SystemPromptAgentA = AnsiConsole.Ask<string>("> ");
             Console.WriteLine();
 
-            //Info about agent 2
-            AnsiConsole.MarkupLine("[underline]Agent 2 System Prompt[/]");
-            SystemPrompts.Add(AnsiConsole.Ask<string>("> "));
+            //Info about agent B
+            AnsiConsole.MarkupLine("[underline]Agent B System Prompt[/]");
+            string SystemPromptAgentB = AnsiConsole.Ask<string>("> ");
             Console.WriteLine();
 
+            //Construct agents
+            Agent AgentA = new Agent(d, ModelName);
+            AgentA.AddInput(new Message(Role.developer, SystemPromptAgentA));
+            Agent AgentB = new Agent(d, ModelName);
+            AgentB.AddInput(new Message(Role.developer, SystemPromptAgentB));
+
+            //First dialog - what does agent a say?
+            AnsiConsole.MarkupLine("[underline]First Dialog[/]");
+            Console.WriteLine("Agent A speaks first. What do they say?");
+            string response = AnsiConsole.Ask<string>("> "); //queue it up as the last response
+            Console.WriteLine();
+
+            while (true)
+            {
+                //Prompt Agent B
+                AnsiConsole.Markup("[gray][italic]Agent B responding...[/][/]");
+                AgentB.AddInput(new Message(Role.user, response));
+                response = await AgentB.PromptAsync();
+                Console.WriteLine();
+                Console.WriteLine();
+                AnsiConsole.MarkupLine("[bold][underline]AGENT B[/][/]");
+                Console.WriteLine(response);
+                Console.WriteLine();
+                AnsiConsole.Markup("[gray][italic]Enter to continue...[/][/]");
+                Console.ReadLine();
+
+                //Prompt Agent A
+                AnsiConsole.Markup("[gray][italic]Agent A responding...[/][/]");
+                AgentA.AddInput(new Message(Role.user, response));
+                response = await AgentA.PromptAsync();
+                Console.WriteLine();
+                Console.WriteLine();
+                AnsiConsole.MarkupLine("[bold][underline]AGENT A[/][/]");
+                Console.WriteLine(response);
+                Console.WriteLine();
+                AnsiConsole.Markup("[gray][italic]Enter to continue...[/][/]");
+                Console.ReadLine();
+            }
             
 
         }
