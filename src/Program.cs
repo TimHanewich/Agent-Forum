@@ -96,7 +96,7 @@ namespace AgentForum
                 response = await AgentB.PromptAsync();
                 Console.WriteLine();
                 Console.WriteLine();
-                AnsiConsole.MarkupLine("[bold][underline]AGENT B[/][/]");
+                AnsiConsole.MarkupLine("[bold][underline]AGENT B Says...[/][/]");
                 Console.WriteLine(response);
                 Console.WriteLine();
                 NewInstructions = AnsiConsole.Prompt(new TextPrompt<string>("[gray][italic]Enter to continue, or provide instructions to agent A on what to do next > [/][/]").AllowEmpty());
@@ -111,7 +111,7 @@ namespace AgentForum
                 response = await AgentA.PromptAsync();
                 Console.WriteLine();
                 Console.WriteLine();
-                AnsiConsole.MarkupLine("[bold][underline]AGENT A[/][/]");
+                AnsiConsole.MarkupLine("[bold][underline]AGENT A Says...[/][/]");
                 Console.WriteLine(response);
                 Console.WriteLine();
                 NewInstructions = AnsiConsole.Prompt(new TextPrompt<string>("[gray][italic]Enter to continue, or provide instructions to agent B on what to do next > [/][/]").AllowEmpty());
