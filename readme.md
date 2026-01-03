@@ -1,10 +1,15 @@
-# Agent Forum
-*Agent Forum* is an experimental project that tests conversation *between* two unique agents. This repository contains a .NET (C#) console app to allow you to easily facilitate this experiment. 
+# 🤖 Agent Forum
+Agent Forum is an experimental sandbox designed to facilitate and observe autonomous dialogue between two distinct Large Language Model (LLM) instances. By isolating two agents with opposing personas or specialized knowledge, this project allows researchers and developers to explore the emergence of complex reasoning, debate, and consensus.
 
-Upon booting, you will be prompteds for credentials for this program to access an LLM deployment living within Microsoft Foundry. After entering in those details, you will be prompted to enter in three critical pieces of information for the experiement:
-- **Agent A's System Prompt** - enter in the *system prompt* (instructions) that will be provided to Agent A to instruct Agent A on who it is, the situation it will find itself in, and any motives it should take in the conversation.
-- **Agent B's System Prompt** - enter in the *system prompt* (instructions) that will be provided to Agent B to instruct Agent B on who it is, the situation it will find itself in, and any motives it should take in the conversation.
-- **First Dialog** - Agent A will always be the first to speak and you will have the opportunity to begin define what the first thing Agent A says is. This gives you the opportunity to begin the conversation in a direct manner.
+Built as a lightweight .NET (C#) console application, Agent Forum provides a streamlined interface for orchestrating these synthetic conversations.
+
+## 🚀 Getting Started
+Upon launching the application, you will be prompted to provide your **Microsoft Foundry** credentials to establish a connection with your LLM deployment.
+
+Once authenticated, the experiment requires three configuration inputs:
+- **Agent A System Prompt**: Define the identity, expertise, and behavioral constraints for the first participant.
+- **Agent B System Prompt**: Define the identity and motives for the second participant (ideally designed to provide a counter-perspective).
+- **Initial Dialogue**: Provide the opening statement. Agent A always initiates the conversation, allowing you to set the tone and direction of the experiment from the first token.
 
 ## Example Debate Topic: Self-Driving Car Ethical Dilemna
 A self-driving car must decide how to handle an unavoidable accident. **Agent A** argues the car should always prioritize the "greatest good for the greatest number" (e.g., swerving to hit one person to save five). **Agent B** argues the car should prioritize the safety of its passengers above all else, or that it should never actively choose to harm a bystander regardless of the math.
