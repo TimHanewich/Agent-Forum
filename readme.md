@@ -3,6 +3,8 @@ Agent Forum is an experimental sandbox designed to facilitate and observe autono
 
 Built as a lightweight .NET (C#) console application, Agent Forum provides a streamlined interface for orchestrating these synthetic conversations.
 
+![example](https://i.imgur.com/TlIUcst.png)
+
 ## 🚀 Getting Started
 Upon launching the application, you will be prompted to provide your **Microsoft Foundry** credentials to establish a connection with your LLM deployment.
 
