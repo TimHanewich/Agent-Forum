@@ -98,8 +98,8 @@ namespace AgentForum
                 AnsiConsole.MarkupLine("[gray][italic]Cumulative Input Token Tally: " + (AgentA.InputTokensConsumed + AgentB.InputTokensConsumed).ToString("#,##0") + "[/][/]");
                 AnsiConsole.MarkupLine("[gray][italic]Cumulative Output Token Tally: " + (AgentA.OutputTokensConsumed + AgentB.OutputTokensConsumed).ToString("#,##0") + "[/][/]");
                 Console.WriteLine();
-                AnsiConsole.MarkupLine("[bold][underline]AGENT B Says...[/][/]");
-                Console.WriteLine(response);
+                AnsiConsole.MarkupLine("[bold][underline][blue]AGENT B Says...[/][/][/]");
+                AnsiConsole.MarkupLine("[blue]" + response + "[/]");
                 Console.WriteLine();
                 NewInstructions = AnsiConsole.Prompt(new TextPrompt<string>("[gray][italic]Enter to continue, or provide instructions to agent A on what to do next > [/][/]").AllowEmpty());
 
@@ -115,8 +115,8 @@ namespace AgentForum
                 AnsiConsole.MarkupLine("[gray][italic]Cumulative Input Token Tally: " + (AgentA.InputTokensConsumed + AgentB.InputTokensConsumed).ToString("#,##0") + "[/][/]");
                 AnsiConsole.MarkupLine("[gray][italic]Cumulative Output Token Tally: " + (AgentA.OutputTokensConsumed + AgentB.OutputTokensConsumed).ToString("#,##0") + "[/][/]");
                 Console.WriteLine();
-                AnsiConsole.MarkupLine("[bold][underline]AGENT A Says...[/][/]");
-                Console.WriteLine(response);
+                AnsiConsole.MarkupLine("[bold][underline][green]AGENT A Says...[/][/][/]");
+                AnsiConsole.MarkupLine("[green]" + response + "[/]");
                 Console.WriteLine();
                 NewInstructions = AnsiConsole.Prompt(new TextPrompt<string>("[gray][italic]Enter to continue, or provide instructions to agent B on what to do next > [/][/]").AllowEmpty());
             }
